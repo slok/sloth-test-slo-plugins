@@ -9,7 +9,7 @@ import (
 
 const (
 	PluginVersion = "prometheus/slo/v1"
-	PluginID      = "github.com/slok/sloth-test-slo-plugins/debug_v1"
+	PluginID      = "github.com/slok/sloth-test-slo-plugins/debug/v1"
 )
 
 type Config struct {

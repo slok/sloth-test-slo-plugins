@@ -46,7 +46,7 @@ func TestPlugin(t *testing.T) {
 }
 
 func BenchmarkPluginYaegi(b *testing.B) {
-	plugin, err := pluginslov1testing.NewTestPlugin(b.Context(), pluginslov1testing.TestPluginConfig{})
+	plugin, err := pluginslov1testing.NewTestPlugin(b.Context(), pluginslov1testing.TestPluginConfig{PluginConfiguration: []byte(`{}`)})
 	if err != nil {
 		b.Fatal(err)
 	}
@@ -60,7 +60,7 @@ func BenchmarkPluginYaegi(b *testing.B) {
 }
 
 func BenchmarkPluginGo(b *testing.B) {
-	plugin, err := plugin.NewPlugin(nil, pluginslov1.AppUtils{})
+	plugin, err := plugin.NewPlugin([]byte(`{}`), pluginslov1.AppUtils{})
 	if err != nil {
 		b.Fatal(err)
 	}
