@@ -43,11 +43,11 @@ type plugin struct {
 
 func (p plugin) ProcessSLO(ctx context.Context, request *pluginslov1.Request, result *pluginslov1.Result) error {
 	for i, r := range result.SLORules.MetadataRecRules.Rules {
-		if r.Record != p.config.MetricName {
-			continue
+		if r.Record == p.config.MetricName {
+			r.Labels = utilsdata.MergeLabels(r.Labels, p.config.Labels)
+			result.SLORules.MetadataRecRules.Rules[i] = r
+			break	
 		}
-		r.Labels = utilsdata.MergeLabels(r.Labels, p.config.Labels)
-		result.SLORules.MetadataRecRules.Rules[i] = r
 	}
 
 	return nil
